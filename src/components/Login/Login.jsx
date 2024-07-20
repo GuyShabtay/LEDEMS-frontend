@@ -5,7 +5,6 @@ import './Login.css';
 import { useSnackbar } from 'notistack';
 import loader from '../../assets/images/loader.gif';
 
-
 const Login = () => {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
@@ -42,7 +41,6 @@ const Login = () => {
         }
       }
       setLoading(false);
-
   };
 
   return (

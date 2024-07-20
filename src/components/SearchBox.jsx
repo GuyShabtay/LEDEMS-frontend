@@ -8,7 +8,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useSnackbar } from 'notistack';
 import loader from '../assets/images/loader.gif';
 
-
 export default function SearchBox() {
   const [searchId, setSearchId] = useState('');
   const [suspect, setSuspect] = useState(null);
@@ -29,11 +28,11 @@ export default function SearchBox() {
     setLoading(false);
   };
 
-  useEffect(() => {
-    if (suspect) {
-      navigate('/suspect-profile', { state: { suspect } });
-    }
-  }, [suspect, navigate]);
+  // useEffect(() => {
+  //   if (suspect) {
+  //     navigate('/suspect-profile', { state: { suspect } });
+  //   }
+  // }, [suspect, navigate]);
 
   return (
     <Box sx={{ '& > :not(style)': { m: 1 } }}>
