@@ -4,12 +4,12 @@ import logo from '../../assets/images/logo.png';
 import logoImage from '../../assets/images/evidence.png';
 
 const Navbar = () => { 
-  const [userName, setUserName] = useState(sessionStorage.getItem('userName'));
+  const [userName, setUserName] = useState(localStorage.getItem('userName'));
 
   const handleLogout = () => {
     if(userName)
     {
-    sessionStorage.clear(); 
+    localStorage.clear(); 
     setUserName(null); 
     window.location.href = '/login'; 
     }
