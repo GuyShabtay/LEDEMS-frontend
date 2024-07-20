@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from './components/Navbar/Navbar';
 import HomePage from './components/HomePage/HomePage';
 import SuspectProfile from './components/SuspectProfile/SuspectProfile';
 import Login from './components/Login/Login';
@@ -7,51 +6,51 @@ import Register from './components/Register/Register';
 import AddEvidence from './components/AddEvidence/AddEvidence';
 import AddSuspect from './components/AddSuspect/AddSuspect';
 import EditEvidence from './components/EditEvidence';
+import Layout from './components/Layout';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 
-const App=()=> {
-  const router = createHashRouter( [
+const App = () => {
+  const router = createHashRouter([
     {
-    path: '/',
-    element: <Login />
+      path: '/',
+      element: <Layout><Login /></Layout>,
     },
     {
-    path: '/login',
-    element: <Login />
+      path: '/login',
+      element: <Layout><Login /></Layout>,
     },
     {
-    path: '/register',
-    element: <Register />
+      path: '/register',
+      element: <Layout><Register /></Layout>,
     },
     {
-    path: '/home-page',
-    element: <HomePage />
+      path: '/home-page',
+      element: <Layout><HomePage /></Layout>,
     },
     {
-    path: '/suspect-profile',
-    element: <SuspectProfile />
+      path: '/suspect-profile',
+      element: <Layout><SuspectProfile /></Layout>,
     },
     {
-    path: '/add-suspect',
-    element: <AddSuspect />
+      path: '/add-suspect',
+      element: <Layout><AddSuspect /></Layout>,
     },
     {
-    path: '/add-evidence',
-    element: <AddEvidence />
+      path: '/add-evidence',
+      element: <Layout><AddEvidence /></Layout>,
     },
     {
-    path: '/edit-evidence',
-    element: <EditEvidence />
+      path: '/edit-evidence',
+      element: <Layout><EditEvidence /></Layout>,
     },
-    ]);
+  ]);
 
   return (
-      <div id='app'>
-        <div id='main-background'></div>
-        <Navbar />
-        <RouterProvider router={router}/>
-      </div>
+    <div id='app'>
+      <div id='main-background'></div>
+      <RouterProvider router={router} />
+    </div>
   );
 }
 

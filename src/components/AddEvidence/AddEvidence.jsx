@@ -39,19 +39,7 @@ const AddEvidence = () => {
     }
     setLoading(true)
     const url = await uploadFile();
-    // const formData = new FormData();
-    // formData.append('suspectName', suspect.name);
-    // formData.append('type', type);
-    // formData.append('description', description);
-    // formData.append('suspectId', suspect.id);
-    // formData.append('fileName', suspect.id);
-    // formData.append('fileUrl', url); 
     const formData={suspectName:suspect.name,type,description,suspectId:suspect.id,fileName:file.name,fileUrl:url}
-
-      // For debugging: log FormData content
-      // for (let pair of formData.entries()) {
-      //   console.log(pair[0]+ ', ' + pair[1]); 
-      // }
 
     try {
       const response = await axios.post('https://ledems-backend.onrender.com/evidences', formData);

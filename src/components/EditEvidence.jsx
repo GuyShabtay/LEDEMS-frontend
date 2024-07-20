@@ -72,8 +72,6 @@ const EditEvidence = () => {
     setFile(changedFile);
     setImageUpload(changedFile);
     setFileName(changedFile.name);
-    console.log(changedFile.name)
-    console.log(fileName)
   };
 
   return (
