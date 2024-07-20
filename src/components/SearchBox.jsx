@@ -28,11 +28,11 @@ export default function SearchBox() {
     setLoading(false);
   };
 
-  // useEffect(() => {
-  //   if (suspect) {
-  //     navigate('/suspect-profile', { state: { suspect } });
-  //   }
-  // }, [suspect, navigate]);
+  useEffect(() => {
+    if (suspect) {
+      navigate('/suspect-profile', { state: { suspect } });
+    }
+  }, [suspect, navigate]);
 
   return (
     <Box sx={{ '& > :not(style)': { m: 1 } }}>

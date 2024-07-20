@@ -32,7 +32,7 @@ const Login = () => {
         sessionStorage.setItem('userName', response.data.userName);
         enqueueSnackbar('Successfully logged in', { variant: 'success' });
         navigate('/home-page');
-        window.location.reload();
+        // window.location.reload();
       }  catch (error) {
         if (error.response && error.response.data) {
           enqueueSnackbar(error.response.data.error, { variant: 'error' });
