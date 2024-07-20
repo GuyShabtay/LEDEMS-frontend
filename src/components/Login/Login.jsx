@@ -30,7 +30,6 @@ const Login = () => {
         });
         sessionStorage.setItem('token', response.data.token);
         sessionStorage.setItem('userName', response.data.userName);
-        enqueueSnackbar('Successfully logged in', { variant: 'success' });
         navigate('/home-page');
         window.location.reload();
       }  catch (error) {
