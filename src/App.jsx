@@ -7,11 +7,11 @@ import Register from './components/Register/Register';
 import AddEvidence from './components/AddEvidence/AddEvidence';
 import AddSuspect from './components/AddSuspect/AddSuspect';
 import EditEvidence from './components/EditEvidence';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createHashRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 
 const App=()=> {
-  const router = createBrowserRouter( [
+  const router = createHashRouter( [
     {
     path: '/',
     element: <Login />
