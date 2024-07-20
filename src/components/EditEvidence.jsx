@@ -56,7 +56,6 @@ const EditEvidence = () => {
         formData
       );
       enqueueSnackbar('Evidence updated successfully', { variant: 'success' });
-      setLoading(false);
       navigate(-1);
     } catch (error) {
       if (error.response && error.response.data) {
@@ -64,8 +63,8 @@ const EditEvidence = () => {
       } else {
         enqueueSnackbar('Error updating evidence', { variant: 'error' });
       }
-      setLoading(false);
     }
+    setLoading(false);
   };
 
   const handleFileChange = (e) => {
@@ -73,6 +72,8 @@ const EditEvidence = () => {
     setFile(changedFile);
     setImageUpload(changedFile);
     setFileName(changedFile.name);
+    console.log(changedFile.name)
+    console.log(fileName)
   };
 
   return (

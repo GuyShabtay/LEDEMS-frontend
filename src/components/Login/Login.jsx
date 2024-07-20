@@ -3,10 +3,13 @@ import React, { useState,useEffect } from 'react';
 import { Link,useNavigate } from 'react-router-dom';
 import './Login.css';
 import { useSnackbar } from 'notistack';
+import loader from '../../assets/images/loader.gif';
+
 
 const Login = () => {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -21,6 +24,7 @@ const Login = () => {
       return;
     } 
       try {
+        setLoading(true);
         const response = await axios.post('https://ledems-backend.onrender.com/login', {
           id,
           password
@@ -30,9 +34,15 @@ const Login = () => {
         enqueueSnackbar('Successfully logged in', { variant: 'success' });
         navigate('/home-page');
         window.location.reload();
-      } catch (err) {
-        enqueueSnackbar('Error logging in', { variant: 'error' });
+      }  catch (error) {
+        if (error.response && error.response.data) {
+          enqueueSnackbar(error.response.data.error, { variant: 'error' });
+        } else {
+          enqueueSnackbar('Error logging in', { variant: 'error' });
+        }
       }
+      setLoading(false);
+
   };
 
   return (
@@ -49,6 +59,7 @@ const Login = () => {
         <span >Don't have an account?</span>
         <Link to="/register" id="register-btn">Register</Link>
       </div>
+      {loading && (<img src={loader} id='loader'/>)}
     </div>
   );
 };

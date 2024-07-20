@@ -4,10 +4,13 @@ import './AddSuspect.css';
 import { Link, useNavigate } from "react-router-dom";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { useSnackbar } from 'notistack';
+import loader from '../../assets/images/loader.gif'
+
 
 const AddSuspect = () => {
   const [name, setName] = useState('');
   const [id, setId] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -19,6 +22,7 @@ const AddSuspect = () => {
       return;
     }
     try {
+      setLoading(true);
       const response = await axios.post('https://ledems-backend.onrender.com/suspects', {
         id,
         name
@@ -30,8 +34,9 @@ const AddSuspect = () => {
         enqueueSnackbar(error.response.data.error, { variant: 'error' });
       } else {
         enqueueSnackbar('Error adding a suspect', { variant: 'error' });
-    }
-  };
+      }
+    };
+    setLoading(false);
   };
 
   return (
@@ -63,6 +68,7 @@ const AddSuspect = () => {
           <button type="submit" className='btn-primary'>Submit</button>
         </form>
       </div>
+      {loading && <img src={loader} id='loader' />}
     </div>
   );
 }

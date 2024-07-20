@@ -3,14 +3,18 @@ import axios from 'axios';
 import './Register.css';
 import { Link,useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
+import loader from '../../assets/images/loader.gif';
+
 
 const Register = () => {
   const [userName, setUserName] = useState('');
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
+
 
   useEffect(() => {
     sessionStorage.clear();
@@ -25,6 +29,7 @@ const Register = () => {
       enqueueSnackbar('Passwords do not match', { variant: 'error' });
     } else {
       try {
+        setLoading(true);
         const response = await axios.post('https://ledems-backend.onrender.com/register', {
           userName,
           id,
@@ -43,6 +48,7 @@ const Register = () => {
       }
     };
   };
+  setLoading(false);
 }
 
   return (
@@ -63,6 +69,7 @@ const Register = () => {
         <span>Already have an account?</span>
         <Link to="/login" id='login-btn'>Login</Link>
       </div>
+      {loading && <img src={loader} id='loader' />}
     </div>
   );
 };
