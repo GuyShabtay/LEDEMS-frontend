@@ -13,7 +13,7 @@ const Login = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
-    localStorage.clear();
+    sessionStorage.clear();
   }, []);
 
   const handleSubmit = async (e) => {
@@ -28,11 +28,11 @@ const Login = () => {
           id,
           password
         });
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('userName', response.data.userName);
+        sessionStorage.setItem('token', response.data.token);
+        sessionStorage.setItem('userName', response.data.userName);
         enqueueSnackbar('Successfully logged in', { variant: 'success' });
         navigate('/home-page');
-        // window.location.reload();
+        window.location.reload();
       }  catch (error) {
         if (error.response && error.response.data) {
           enqueueSnackbar(error.response.data.error, { variant: 'error' });

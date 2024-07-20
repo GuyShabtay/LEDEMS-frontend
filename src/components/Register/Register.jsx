@@ -17,7 +17,7 @@ const Register = () => {
 
 
   useEffect(() => {
-    localStorage.clear();
+    sessionStorage.clear();
   }, []);
 
   const handleSubmit = async (e) => {
