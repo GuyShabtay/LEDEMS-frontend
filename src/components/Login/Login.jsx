@@ -18,7 +18,12 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!id || !password) {
+    const regex = /^[0-9]*$/;
+    if (!regex.test(id)) {
+      enqueueSnackbar('ID must contain only digits', { variant: 'error' });
+      return
+    }
+    else if (!id || !password) {
       enqueueSnackbar('All fields are required', { variant: 'error' });
       return;
     } 
