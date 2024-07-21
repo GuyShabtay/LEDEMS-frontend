@@ -6,15 +6,15 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DeleteModal from '../DeleteModal/DeleteModal';
 import { useSnackbar } from 'notistack';
-
+import loader from '../../assets/images/loader.gif';
 
 const Evidence = ({ evidence }) => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
+  const [loading, setLoading] = useState(false);
 
- 
   useEffect(() => {
     if (isDelete) {
       handleDelete();
@@ -23,12 +23,14 @@ const Evidence = ({ evidence }) => {
 
   const handleDelete = async () => {
     try {
+      setLoading(true);
       await axios.delete(`https://ledems-backend.onrender.com/evidences/${evidence.id}`);
       setIsModalOpen(false);
       window.location.reload();
     } catch (error) {
       enqueueSnackbar('Error deleting evidence:', { variant: 'error' });
     }
+    setLoading(false);
   };
 
   const handleDeleteClick = () => {
@@ -68,6 +70,8 @@ const Evidence = ({ evidence }) => {
         onClose={handleCloseModal}
         onConfirm={handleDelete}
       />
+      {loading && <img src={loader} id='loader' />}
+
     </div>
   );
 };
